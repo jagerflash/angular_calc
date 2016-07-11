@@ -11,14 +11,7 @@
             <div class="display_small">{{ display_history_Value }}</div>
             <div class="display">{{ displayValue }}</div>
             <div class="keys">
-                <div class="key" ng-repeat="key in keys"  ng-class="{'zero': key.label == 0}" ng-click="digitClicked(key.value)">{{ key.label }}</div>
-            </div>
-            <div class="operations">
-                <div class="clear" ng-click="clear()">C</div>
-                <div class="operation" ng-click="operationClicked(op)" ng-repeat="op in operations">
-                    {{op.label}}
-                </div>
-                <div class="equa" ng-click="compute()">=</div>
+                <div class="key" ng-repeat="key in keys"  ng-class="{'double-width': key.label == '=' || key.label == '←' || key.label == 'C', 'operation': !!key.operation}" ng-click="keyClicked(key)">{{ key.label }}</div>
             </div>
         </div>
     </div>

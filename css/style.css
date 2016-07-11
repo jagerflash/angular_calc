@@ -11,6 +11,7 @@
     display: inline-block;
     background-color: black;
     overflow: hidden;
+    width: 405px;
     font-family: monospace;
     color: #555;
     padding: 15px;
@@ -48,7 +49,6 @@
 }
 .keys {
     overflow: hidden;
-    width: 225px;
     float: left;
 }
  
@@ -58,8 +58,12 @@
     background-color: #fff;
 }
 
-.keys .key.zero {
-    width: 100%;
+.keys .key.double-width {
+    width: 150px;
+}
+
+.keys .operation {
+    background-color: #eee;
 }
 
 .operations {
@@ -76,12 +80,6 @@
     background-color: #f90;
 }
 
-.operations .operation {
-    width: 75px;
-    height:50px;
-    background-color: #eee;
-}
- 
 .key, .equa, .operation, .clear {
     cursor: pointer;
     font-family: monospace;
