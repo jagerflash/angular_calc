@@ -157,8 +157,25 @@ data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL*/
 	$scope.operationClicked = function (op) {
 		if(typeof op == 'function') {
 			
-		}else if( op == 'string'){
-			
+		}else if(typeof op == 'string'){
+			switch (op) {
+				case 'back':
+					// code
+					break;
+				case 'clear':
+					// code
+					break;
+				case 'equal':
+					$scope.compute();
+					break;
+				
+				default:
+					$scope.selectedOperation = op.operation;
+					$scope.valueA = $scope.displayValue;
+					$scope.valueB = $scope.displayValue;
+					$scope.clearValue = true;
+					$scope.display_history_Value += op;
+			}
 		}
 		return;
 		$scope.selectedOperation = op.operation;
