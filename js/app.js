@@ -163,7 +163,7 @@ data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL*/
 					// code
 					break;
 				case 'clear':
-					// code
+					$scope.clear();
 					break;
 				case 'equal':
 					$scope.compute();
@@ -190,7 +190,8 @@ data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL*/
 		if($scope.display_history_Value == ''){
 			$scope.displayValue = 0;
 		}else {
-			$scope.displayValue = eval(history);
+			var res = eval(history);
+			$scope.displayValue = reduce(res);
 			$scope.display_history_Value += '='+$scope.displayValue;
 		}
 		$scope.clearValue = true;
@@ -201,7 +202,13 @@ data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL*/
 		$scope.displayValue = 0;
 		$scope.display_history_Value = '';
 	}
-	
+	function reduce(val){
+		if(val>1E16 || val<1E-16) {
+			return val.toExponential(10);
+		}
+			
+		return val;
+	}
 	$scope.type = 'simple';
 	$scope.display_history_Value = '';
 	$scope.displayValue = 0;
