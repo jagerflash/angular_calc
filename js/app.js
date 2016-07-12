@@ -193,11 +193,10 @@ app.controller("calcController", function ($scope) {
 			try{
 				history = close_brackets(history);
 				var res = eval(history);
-				$scope.displayValue = reduce(res);
+				// $scope.displayValue = reduce(res);
 				// $scope.display_history = history;
-				$scope.display_history = $scope.displayValue;
+				$scope.display_history = reduce(res);
 				$scope.valueA = $scope.display_history;
-				console.log($scope.valueA);
 			}catch (e){
 				$scope.displayValue = 0; 
 				$scope.display_history = 'Error';//Malformed expression
@@ -235,18 +234,20 @@ app.controller("calcController", function ($scope) {
 	
 	
 	function close_brackets(str){
+		str+='';
 		while (str.split('(').length > str.split(')').length){
 			str = str.concat(')');
 		}
 		while (str.split('(').length < str.split(')').length){
 			str = ('(').concat(str);
 		}
-		
+
 		var r = /\d\(/g;
 
 		str = str.replace(r, function(str){
 		  return str.replace('(','*(');
 		})
+		
 		return str;
 	}
 	function clear_first_zero(val){
@@ -255,10 +256,6 @@ app.controller("calcController", function ($scope) {
 	function reduce(val){
 		if(val.toString().length > 10){
 			return val.toExponential(10);
-		}
-		
-		if(val>1E16 || val<1E-16) {
-			// return val.toExponential(10);
 		}
 			
 		return val;
