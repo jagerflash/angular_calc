@@ -8,12 +8,12 @@
 <body ng-app="calc">
     
     <div ng-controller="calcController">
-        <div ng-click="setType('simple')">Simple</div>
-        <div ng-click="setType('advanced')">Advanced</div>
+        <div class="key" ng-click="setType('simple')">Simple</div>
+        <div class="key" ng-click="setType('advanced')">Advanced</div>
         <div class="calculator">
             <div class="display">{{ display_history }}</div>
             <div class="keys">
-                <div class="key" ng-repeat="key in keys"  ng-class="{'double-width': key.label == '=' || key.label == '←', 'operation': !!key.operation}" ng-click="keyClicked(key)">{{ key.label }}</div>
+                <div class="key" ng-repeat="key in keys"  ng-class="{'equa':key.label == '=','double-width': key.label == '=' || (key.label == '←' && type == 'advanced'), 'operation': !!key.operation}" ng-click="keyClicked(key)">{{ key.label }}</div>
             </div>
         </div>
     </div>

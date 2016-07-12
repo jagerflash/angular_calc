@@ -67,13 +67,7 @@
     background-color: #eee;
 }
 
-.operations {
-    overflow: hidden;
-    width: 150px;
-    float: left;
-}
-
-.operations .equa {
+.keys .equa {
     vertical-align: middle;
     width: 150px;
     height: 50px;

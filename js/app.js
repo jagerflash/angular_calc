@@ -110,20 +110,6 @@ var Model = function(){
 var data_model = new Model();
 
 app.controller("calcController", function ($scope) {
-/*data_model.DIGIT1, data_model.DIGIT2, data_model.DIGIT3, data_model.OP_BCK, data_model.OP_CLR,
-data_model.DIGIT4, data_model.DIGIT5, data_model.DIGIT6, data_model.OP_MNS, data_model.OP_PLS,
-data_model.DIGIT7, data_model.DIGIT8, data_model.DIGIT9, data_model.OP_DIV, data_model.OP_MUL,
-data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL*/
-	
-	$scope.keys = data_model.getKeys([
-		data_model.OP_MPL, data_model.OP_MMS, data_model.OP_MCL, data_model.OP_MRD, data_model.OP_CLR,
-		data_model.OP_SQR, data_model.OP_SQT, data_model.OP_PST, data_model.OP_BCK, 
-		data_model.DIGIT1, data_model.DIGIT2, data_model.DIGIT3, data_model.OP_LBR, data_model.OP_RBR, 
-		data_model.DIGIT4, data_model.DIGIT5, data_model.DIGIT6, data_model.OP_MNS, data_model.OP_PLS,
-		data_model.DIGIT7, data_model.DIGIT8, data_model.DIGIT9, data_model.OP_DIV, data_model.OP_MUL,
-		data_model.OP_PNT, data_model.DIGIT0, data_model.OP_INV, data_model.OP_EQL
-	]);
-	
 	$scope.keyClicked = function(key) {
 		if(key.value !== undefined) {
 			$scope.digitClicked(key.value)
@@ -225,6 +211,27 @@ data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL*/
 		$scope.display_history = 0;
 		$scope.clearValue = true;
 	}
+	$scope.setType = function(val){
+		$scope.type = val;
+		
+		if($scope.type == 'simple') {
+			$scope.keys = data_model.getKeys([
+				data_model.DIGIT1, data_model.DIGIT2, data_model.DIGIT3, data_model.OP_BCK, data_model.OP_CLR,
+				data_model.DIGIT4, data_model.DIGIT5, data_model.DIGIT6, data_model.OP_MNS, data_model.OP_PLS,
+				data_model.DIGIT7, data_model.DIGIT8, data_model.DIGIT9, data_model.OP_DIV, data_model.OP_MUL,
+				data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL	
+			]);
+		}else {
+			$scope.keys = data_model.getKeys([
+				data_model.OP_MPL, data_model.OP_MMS, data_model.OP_MCL, data_model.OP_MRD, data_model.OP_CLR,
+				data_model.OP_SQR, data_model.OP_SQT, data_model.OP_PST, data_model.OP_BCK, 
+				data_model.DIGIT1, data_model.DIGIT2, data_model.DIGIT3, data_model.OP_LBR, data_model.OP_RBR, 
+				data_model.DIGIT4, data_model.DIGIT5, data_model.DIGIT6, data_model.OP_MNS, data_model.OP_PLS,
+				data_model.DIGIT7, data_model.DIGIT8, data_model.DIGIT9, data_model.OP_DIV, data_model.OP_MUL,
+				data_model.OP_PNT, data_model.DIGIT0, data_model.OP_INV, data_model.OP_EQL
+			]);
+		}
+	}
 	
 	
 	function close_brackets(str){
@@ -256,6 +263,7 @@ data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL*/
 			
 		return val;
 	}
+	
 	$scope.type = 'simple';
 	$scope.enterDigit = true;
 	$scope.display_history = '0';
@@ -265,4 +273,6 @@ data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL*/
 	$scope.selectedOperation = null;
 	$scope.clearValue = true;
 	$scope.clearHistory = true;
+	
+	$scope.setType($scope.type);
 });
