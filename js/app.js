@@ -119,6 +119,7 @@ app.controller("calcController", function ($scope) {
 	}
 	
 	$scope.digitClicked = function(digit) {
+		if($scope.valueA.toString().length > 17) return;
 		if ($scope.clearValue == true) {
 			$scope.clearValue = false;
 			$scope.display_history = digit;
@@ -130,6 +131,8 @@ app.controller("calcController", function ($scope) {
 		}
 		
 		clear_first_zero($scope.display_history);
+		$scope.small_size = $scope.display_history.length > 16;
+		$scope.mikro_size = $scope.display_history.length > 21;
 	}
 	
 	$scope.operationClicked = function (key) {
@@ -183,6 +186,8 @@ app.controller("calcController", function ($scope) {
 					$scope.valueA = '';
 			}
 		}
+		$scope.small_size = $scope.display_history.length > 16;
+		$scope.mikro_size = $scope.display_history.length > 21;
 	};
 
 	$scope.compute = function () {
@@ -203,6 +208,8 @@ app.controller("calcController", function ($scope) {
 			}
 		}
 		$scope.clearValue = true;
+		$scope.small_size = $scope.display_history.length > 16;
+		$scope.mikro_size = $scope.display_history.length > 21;
 	}
 	
 	$scope.clear = function(){
@@ -261,13 +268,13 @@ app.controller("calcController", function ($scope) {
 		return val;
 	}
 	
+	$scope.small_size = false;
+	$scope.mikro_size = false;
 	$scope.type = 'simple';
 	$scope.enterDigit = true;
 	$scope.display_history = '0';
 	$scope.displayValue = 0;
-	$scope.valueA = undefined;
-	$scope.valueB = undefined;
-	$scope.selectedOperation = null;
+	$scope.valueA = '';
 	$scope.clearValue = true;
 	$scope.clearHistory = true;
 	

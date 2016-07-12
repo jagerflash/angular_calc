@@ -1,4 +1,4 @@
-var Model = function(){
+/*var Model = function(){
 	this.DIGIT1 = "1";
 	this.DIGIT2 = "2";
 	this.DIGIT3 = "3";
@@ -210,4 +210,4 @@ var calc = function() {
     return {
         
     }
-}();
+}();*/

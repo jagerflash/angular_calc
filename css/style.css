@@ -30,8 +30,13 @@
     overflow: hidden;
 }
 .display {
-    border-top: none;
     line-height: 80px;
+}
+.display.barby_size {
+    font-size: 25px;
+}
+.display.mikro_size {
+    font-size: 15px;
 }
 .display_small {
     font-size: 16px;
