@@ -1,0 +1,6 @@
+var calc = function() {
+    
+    return {
+        
+    }
+}();

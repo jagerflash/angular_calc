@@ -28,6 +28,7 @@ var Model = function(){
 	this.OP_MMS = "M-";
 	this.OP_MPL = "M+";
 	this.OP_MCL = "MC";
+	this.OP_MRD = "MR";
 	
 	var _this = this;
 	var keys = [
@@ -41,43 +42,46 @@ var Model = function(){
 		{label: this.DIGIT8, value: 8}, 
 		{label: this.DIGIT9, value: 9},
 		{label: this.DIGIT0, value: 0},
+		{label: this.OP_PNT, value: "."}, 
 		{label: this.OP_DIV, operation: "/"}, 
 		{label: this.OP_MUL, operation: "*"},
 		{label: this.OP_MNS, operation: "-"}, 
 		{label: this.OP_PLS, operation: "+"},
-		{label: this.OP_PNT, operation: "."}, 
 		{label: this.OP_LBR, operation: "("},
 		{label: this.OP_RBR, operation: ")"}, 
 		{label: this.OP_BCK, operation: "back"},
 		{label: this.OP_CLR, operation: "clear"}, 
 		{label: this.OP_EQL, operation: "equal"},
-		{label: this.OP_PST, operation: function(a, b){ return Math.floor((a / b) * 100) }},
+		{label: this.OP_PST, operation: function(a){ return a / 100 }},
 		{label: this.OP_SQT, operation: function(a){ return Math.sqrt(a) }},
 		{label: this.OP_SQR, operation: function(a){ return Math.pow(a, 2) }},
 		{label: this.OP_INV, operation: function(a){ return a * -1 }},
 		{label: this.OP_MMS, operation: function(a){ 
 			if(storage != undefined){
-				storage -= a;
+				storage -= parseFloat(a) ;
 			}else {
-				storage = a * -1;
+				storage = parseFloat(a) * -1;
 			}
 			
 			return storage; 
 		}},
 		{label: this.OP_MPL, operation: function(a){ 
 			if(storage != undefined){
-				storage += a;
+				storage += parseFloat(a) ;
 			}else {
-				storage = a;
+				storage = parseFloat(a) ;
 			}
 			
 			return storage; 
 		}},
-		{label: this.OP_MCL, operation: function(a){ 
-			storage = undefined;
+		{label: this.OP_MCL, operation: function(){ 
+			storage = 0;
 			
 			return storage;
 		}},
+		{label: this.OP_MRD, operation: function(){ 
+			return storage;
+		}}
 	];
 	
 	this.getKey =function(keyName){
@@ -106,114 +110,158 @@ var Model = function(){
 var data_model = new Model();
 
 app.controller("calcController", function ($scope) {
-	$scope.equa = {label: "="};
-	$scope.operations = [
-		{label: "/", operation: function (a, b) {return a / b}},
-		{label: "*", operation: function (a, b) {return a * b}},
-		{label: "+", operation: function (a, b) {return a + b}},
-		{label: "-", operation: function (a, b) {return a - b}}
-	];
-	
 /*data_model.DIGIT1, data_model.DIGIT2, data_model.DIGIT3, data_model.OP_BCK, data_model.OP_CLR,
 data_model.DIGIT4, data_model.DIGIT5, data_model.DIGIT6, data_model.OP_MNS, data_model.OP_PLS,
 data_model.DIGIT7, data_model.DIGIT8, data_model.DIGIT9, data_model.OP_DIV, data_model.OP_MUL,
 data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL*/
 	
 	$scope.keys = data_model.getKeys([
-		data_model.OP_MPL, data_model.OP_MMS, data_model.OP_MCL, data_model.OP_BCK,
-		data_model.OP_SQR, data_model.OP_SQT, data_model.OP_PST, data_model.OP_CLR, 
+		data_model.OP_MPL, data_model.OP_MMS, data_model.OP_MCL, data_model.OP_MRD, data_model.OP_CLR,
+		data_model.OP_SQR, data_model.OP_SQT, data_model.OP_PST, data_model.OP_BCK, 
 		data_model.DIGIT1, data_model.DIGIT2, data_model.DIGIT3, data_model.OP_LBR, data_model.OP_RBR, 
 		data_model.DIGIT4, data_model.DIGIT5, data_model.DIGIT6, data_model.OP_MNS, data_model.OP_PLS,
 		data_model.DIGIT7, data_model.DIGIT8, data_model.DIGIT9, data_model.OP_DIV, data_model.OP_MUL,
-		data_model.DIGIT0, data_model.OP_INV, data_model.OP_PNT, data_model.OP_EQL
+		data_model.OP_PNT, data_model.DIGIT0, data_model.OP_INV, data_model.OP_EQL
 	]);
 	
 	$scope.keyClicked = function(key) {
 		if(key.value !== undefined) {
 			$scope.digitClicked(key.value)
 		} else if (key.operation !== undefined) {
-			$scope.operationClicked(key.operation);
+			$scope.operationClicked(key);
 		}
 	}
 	
-	$scope.digitClicked = function(digit){
-		if ($scope.clearValue) {
-			$scope.displayValue = digit;
+	$scope.digitClicked = function(digit) {
+		if ($scope.clearValue == true) {
 			$scope.clearValue = false;
-		} else {
-			$scope.displayValue = $scope.displayValue * 10 + digit;
-		}
-		if($scope.clearHistory){
-			$scope.display_history_Value = '';
+			$scope.display_history = digit;
+			$scope.displayValue = 0;
+			$scope.valueA = digit+'';
+		}else{
+			$scope.valueA += digit+'';
+			$scope.display_history += digit+'';
 		}
 		
-		$scope.valueB = $scope.displayValue
-		$scope.display_history_Value += digit;
-		if($scope.display_history_Value.length == 2 && $scope.display_history_Value.indexOf('0') == 0) 
-		$scope.display_history_Value = digit;
-		$scope.clearHistory = false;
+		clear_first_zero($scope.display_history);
 	}
 	
-	$scope.operationClicked = function (op) {
-		if(typeof op == 'function') {
+	$scope.operationClicked = function (key) {
+		if ($scope.clearValue == true) {
+			$scope.clearValue = false;
+		}
+		if(typeof key.operation == 'function') {
+			switch (key.label) {
+				case data_model.OP_MCL:
+					key.operation();
+					break;
+				case data_model.OP_MMS:
+					$scope.compute();
+					if($scope.display_history !== 'Error'){
+						key.operation($scope.display_history);
+					}
+					break;
+				case data_model.OP_MPL:
+					$scope.compute();
+					if($scope.display_history !== 'Error'){
+						key.operation($scope.display_history);
+					}
+					break;
+				case data_model.OP_MRD:
+					$scope.display_history += key.operation();
+					break;
+				
+				default:
+					console.log($scope.valueA);
+					var r = new RegExp($scope.valueA + '$');
+					$scope.valueA = key.operation($scope.valueA);
+					$scope.display_history = (''+$scope.display_history).replace(r, $scope.valueA);
+			}
 			
-		}else if(typeof op == 'string'){
-			switch (op) {
+		}else if(typeof key.operation == 'string'){
+			switch (key.operation) {
 				case 'back':
-					// code
+					$scope.display_history = (''+$scope.display_history).slice(0, (''+$scope.display_history).length-1);
+					$scope.valueA = '';
 					break;
 				case 'clear':
 					$scope.clear();
+					$scope.valueA = '';
 					break;
 				case 'equal':
 					$scope.compute();
 					break;
 				
 				default:
-					$scope.selectedOperation = op.operation;
-					$scope.valueA = $scope.displayValue;
-					$scope.valueB = $scope.displayValue;
-					$scope.clearValue = true;
-					$scope.display_history_Value += op;
+					$scope.display_history += key.operation;
+					$scope.valueA = '';
 			}
 		}
-		return;
-		$scope.selectedOperation = op.operation;
-		$scope.valueA = $scope.displayValue;
-		$scope.valueB = $scope.displayValue;
-		$scope.clearValue = true;
-		$scope.display_history_Value += op.label.toString();
 	};
 
 	$scope.compute = function () {
-		var history = $scope.display_history_Value;
-		if($scope.display_history_Value == ''){
+		var history = $scope.display_history;
+		if(history == ''){
 			$scope.displayValue = 0;
 		}else {
-			var res = eval(history);
-			$scope.displayValue = reduce(res);
-			$scope.display_history_Value += '='+$scope.displayValue;
+			try{
+				history = close_brackets(history);
+				var res = eval(history);
+				$scope.displayValue = reduce(res);
+				// $scope.display_history = history;
+				$scope.display_history = $scope.displayValue;
+				$scope.valueA = $scope.display_history;
+				console.log($scope.valueA);
+			}catch (e){
+				$scope.displayValue = 0; 
+				$scope.display_history = 'Error';//Malformed expression
+			}
 		}
 		$scope.clearValue = true;
-		$scope.clearHistory = true;
 	}
 	
 	$scope.clear = function(){
 		$scope.displayValue = 0;
-		$scope.display_history_Value = '';
+		$scope.display_history = 0;
+		$scope.clearValue = true;
+	}
+	
+	
+	function close_brackets(str){
+		while (str.split('(').length > str.split(')').length){
+			str = str.concat(')');
+		}
+		while (str.split('(').length < str.split(')').length){
+			str = ('(').concat(str);
+		}
+		
+		var r = /\d\(/g;
+
+		str = str.replace(r, function(str){
+		  return str.replace('(','*(');
+		})
+		return str;
+	}
+	function clear_first_zero(val){
+		val = (''+val).search( /^0+/, '');
 	}
 	function reduce(val){
-		if(val>1E16 || val<1E-16) {
+		if(val.toString().length > 10){
 			return val.toExponential(10);
+		}
+		
+		if(val>1E16 || val<1E-16) {
+			// return val.toExponential(10);
 		}
 			
 		return val;
 	}
 	$scope.type = 'simple';
-	$scope.display_history_Value = '';
+	$scope.enterDigit = true;
+	$scope.display_history = '0';
 	$scope.displayValue = 0;
-	$scope.valueA = 0;
-	$scope.valueB = 0;
+	$scope.valueA = undefined;
+	$scope.valueB = undefined;
 	$scope.selectedOperation = null;
 	$scope.clearValue = true;
 	$scope.clearHistory = true;

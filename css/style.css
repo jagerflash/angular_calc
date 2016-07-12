@@ -34,9 +34,10 @@
     line-height: 80px;
 }
 .display_small {
-    font-size: 13px;
+    font-size: 16px;
+    line-height: 16px;
     height: auto;
-    min-height: 16px;
+    min-height: 21px;
     border-bottom: none;
     text-align: left;
 }
