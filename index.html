@@ -11,9 +11,9 @@
         <div class="key" ng-click="setType('simple')">Simple</div>
         <div class="key" ng-click="setType('advanced')">Advanced</div>
         <div class="calculator">
-            <div class="display" ng-class="{'barby_size': small_size,'mikro_size': mikro_size}">{{ display_history }}</div>
+            <div class="display" ng-class="{'barby_size': middle_size,'mikro_size': small_size}">{{ result }}</div>
             <div class="keys">
-                <div class="key" ng-repeat="key in keys"  ng-class="{'equa':key.label == '=','double-width': key.label == '=' || (key.label == '←' && type == 'advanced'), 'operation': !!key.operation}" ng-click="keyClicked(key)">{{ key.label }}</div>
+                <div class="key" ng-repeat="key in keys" ng-class="{'equa':key.label == '=','double-width': key.label == '=' || (key.label == '←' && type == 'advanced'), 'operation': !!key.operation}" ng-click="keyClicked(key)">{{ key.label }}</div>
             </div>
         </div>
     </div>
