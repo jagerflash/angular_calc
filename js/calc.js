@@ -1,65 +1,65 @@
 var storage = 0; // память
 
-var key = {}; // кнопки
-key.DIGIT1 = "1";
-key.DIGIT2 = "2";
-key.DIGIT3 = "3";
-key.DIGIT4 = "4";
-key.DIGIT5 = "5";
-key.DIGIT6 = "6";
-key.DIGIT7 = "7";
-key.DIGIT8 = "8";
-key.DIGIT9 = "9";
-key.DIGIT0 = "0";
-key.OP_DIV = "/";
-key.OP_MUL = "*";
-key.OP_MNS = "-";
-key.OP_PLS = "+";
-key.OP_PNT = ".";
-key.OP_LBR = "(";
-key.OP_RBR = ")";
-key.OP_BCK = "←";
-key.OP_CLR = "C";
-key.OP_EQL = "=";
-key.OP_PST = "%";
-key.OP_SQT = "√";
-key.OP_SQR = "x²";
-key.OP_INV = "+-";
-key.OP_MMS = "M-";
-key.OP_MPL = "M+";
-key.OP_MCL = "MC";
-key.OP_MRD = "MR";
+var keyboard = {}; // кнопки
+keyboard.DIGIT1 = "1";
+keyboard.DIGIT2 = "2";
+keyboard.DIGIT3 = "3";
+keyboard.DIGIT4 = "4";
+keyboard.DIGIT5 = "5";
+keyboard.DIGIT6 = "6";
+keyboard.DIGIT7 = "7";
+keyboard.DIGIT8 = "8";
+keyboard.DIGIT9 = "9";
+keyboard.DIGIT0 = "0";
+keyboard.OP_DIV = "/";
+keyboard.OP_MUL = "*";
+keyboard.OP_MNS = "-";
+keyboard.OP_PLS = "+";
+keyboard.OP_PNT = ".";
+keyboard.OP_LBR = "(";
+keyboard.OP_RBR = ")";
+keyboard.OP_BCK = "←";
+keyboard.OP_CLR = "C";
+keyboard.OP_EQL = "=";
+keyboard.OP_PST = "%";
+keyboard.OP_SQT = "√";
+keyboard.OP_SQR = "x²";
+keyboard.OP_INV = "+-";
+keyboard.OP_MMS = "M-";
+keyboard.OP_MPL = "M+";
+keyboard.OP_MCL = "MC";
+keyboard.OP_MRD = "MR";
 
 var model = function(){
 	var keys = [
-		{label: key.DIGIT1, type:"digital", value: 1}, 
-		{label: key.DIGIT2, type:"digital", value: 2}, 
-		{label: key.DIGIT3, type:"digital", value: 3},
-		{label: key.DIGIT4, type:"digital", value: 4}, 
-		{label: key.DIGIT5, type:"digital", value: 5}, 
-		{label: key.DIGIT6, type:"digital", value: 6},
-		{label: key.DIGIT7, type:"digital", value: 7}, 
-		{label: key.DIGIT8, type:"digital", value: 8}, 
-		{label: key.DIGIT9, type:"digital", value: 9},
-		{label: key.DIGIT0, type:"digital", value: 0},
-		{label: key.OP_PNT, type:"digital", value: "."}, 
-		{label: key.OP_DIV, type:"operand", operation: "/"}, 
-		{label: key.OP_MUL, type:"operand", operation: "*"},
-		{label: key.OP_MNS, type:"operand", operation: "-"}, 
-		{label: key.OP_PLS, type:"operand", operation: "+"},
-		{label: key.OP_LBR, type:"operand", operation: "("},
-		{label: key.OP_RBR, type:"operand", operation: ")"}, 
-		{label: key.OP_BCK, type:"selective", operation: "back"},
-		{label: key.OP_CLR, type:"selective", operation: "clear"}, 
-		{label: key.OP_EQL, type:"selective", operation: "equal"},
-		{label: key.OP_PST, type:"modifiers", operation: function(a){ return a / 100 }},
-		{label: key.OP_SQT, type:"modifiers", operation: function(a){ return Math.sqrt(a) }},
-		{label: key.OP_SQR, type:"modifiers", operation: function(a){ return Math.pow(a, 2) }},
-		{label: key.OP_INV, type:"modifiers", operation: function(a){ 
+		{label: keyboard.DIGIT1, type:"digital", value: 1}, 
+		{label: keyboard.DIGIT2, type:"digital", value: 2}, 
+		{label: keyboard.DIGIT3, type:"digital", value: 3},
+		{label: keyboard.DIGIT4, type:"digital", value: 4}, 
+		{label: keyboard.DIGIT5, type:"digital", value: 5}, 
+		{label: keyboard.DIGIT6, type:"digital", value: 6},
+		{label: keyboard.DIGIT7, type:"digital", value: 7}, 
+		{label: keyboard.DIGIT8, type:"digital", value: 8}, 
+		{label: keyboard.DIGIT9, type:"digital", value: 9},
+		{label: keyboard.DIGIT0, type:"digital", value: 0},
+		{label: keyboard.OP_PNT, type:"digital", value: "."}, 
+		{label: keyboard.OP_DIV, type:"operand", operation: "/"}, 
+		{label: keyboard.OP_MUL, type:"operand", operation: "*"},
+		{label: keyboard.OP_MNS, type:"operand", operation: "-"}, 
+		{label: keyboard.OP_PLS, type:"operand", operation: "+"},
+		{label: keyboard.OP_LBR, type:"operand", operation: "("},
+		{label: keyboard.OP_RBR, type:"operand", operation: ")"}, 
+		{label: keyboard.OP_BCK, type:"selective", operation: "back"},
+		{label: keyboard.OP_CLR, type:"selective", operation: "clear"}, 
+		{label: keyboard.OP_EQL, type:"selective", operation: "equal"},
+		{label: keyboard.OP_PST, type:"modifiers", operation: function(a){ return a / 100 }},
+		{label: keyboard.OP_SQT, type:"modifiers", operation: function(a){ return Math.sqrt(a) }},
+		{label: keyboard.OP_SQR, type:"modifiers", operation: function(a){ return Math.pow(a, 2) }},
+		{label: keyboard.OP_INV, type:"modifiers", operation: function(a){ 
 			if(a == '') throw new Error('empty');
 			return (parseFloat(a) * -1)+'' 
 		}},
-		{label: key.OP_MMS, type:"memory", operation: function(a){ 
+		{label: keyboard.OP_MMS, type:"memory", operation: function(a){ 
 			if(storage != undefined){
 				storage -= parseFloat(a) ;
 			}else {
@@ -68,7 +68,7 @@ var model = function(){
 			
 			return storage; 
 		}},
-		{label: key.OP_MPL, type:"memory", operation: function(a){ 
+		{label: keyboard.OP_MPL, type:"memory", operation: function(a){ 
 			if(storage != undefined){
 				storage += parseFloat(a) ;
 			}else {
@@ -77,12 +77,12 @@ var model = function(){
 			
 			return storage; 
 		}},
-		{label: key.OP_MCL, type:"memory", operation: function(){ 
+		{label: keyboard.OP_MCL, type:"memory", operation: function(){ 
 			storage = 0;
 			
 			return storage;
 		}},
-		{label: key.OP_MRD, type:"memory", operation: function(){ 
+		{label: keyboard.OP_MRD, type:"memory", operation: function(){ 
 			return storage;
 		}}
 	];
@@ -139,9 +139,7 @@ var calc = function(){
     			expression += digit+'';
     			result += digit+'';
     		}
-    		console.log(result);
     		result = clear_first_zero(result);
-    		console.log(result);
         break;
       case 'operand':
         result += key.operation;
@@ -170,9 +168,9 @@ var calc = function(){
 				}
         break;
       case 'memory':
-        if(key.label == model.OP_MCL){ // очистка памяти
+        if(key.label == keyboard.OP_MCL){ // очистка памяти
           key.operation();
-        }else if(key.label == model.OP_MRD){ // чтение из памяти
+        }else if(key.label == keyboard.OP_MRD){ // чтение из памяти
           result += key.operation();
         }else { // запись в память
           compute();
@@ -267,19 +265,19 @@ var calc = function(){
       calc_type = type;
       if(calc_type == 'simple') {
   			key_config = model.getKeys([
-  				key.DIGIT1, key.DIGIT2, key.DIGIT3, key.OP_BCK, key.OP_CLR,
-  				key.DIGIT4, key.DIGIT5, key.DIGIT6, key.OP_MNS, key.OP_PLS,
-  				key.DIGIT7, key.DIGIT8, key.DIGIT9, key.OP_DIV, key.OP_MUL,
-  				key.DIGIT0, key.OP_INV, key.OP_PNT, key.OP_EQL	
+  				keyboard.DIGIT1, keyboard.DIGIT2, keyboard.DIGIT3, keyboard.OP_BCK, keyboard.OP_CLR,
+  				keyboard.DIGIT4, keyboard.DIGIT5, keyboard.DIGIT6, keyboard.OP_MNS, keyboard.OP_PLS,
+  				keyboard.DIGIT7, keyboard.DIGIT8, keyboard.DIGIT9, keyboard.OP_DIV, keyboard.OP_MUL,
+  				keyboard.DIGIT0, keyboard.OP_INV, keyboard.OP_PNT, keyboard.OP_EQL	
   			]);
   		}else {
   			key_config = model.getKeys([
-  				key.OP_MPL, key.OP_MMS, key.OP_MCL, key.OP_MRD, key.OP_CLR,
-  				key.OP_SQR, key.OP_SQT, key.OP_PST, key.OP_BCK, 
-  				key.DIGIT1, key.DIGIT2, key.DIGIT3, key.OP_LBR, key.OP_RBR, 
-  				key.DIGIT4, key.DIGIT5, key.DIGIT6, key.OP_MNS, key.OP_PLS,
-  				key.DIGIT7, key.DIGIT8, key.DIGIT9, key.OP_DIV, key.OP_MUL,
-  				key.OP_PNT, key.DIGIT0, key.OP_INV, key.OP_EQL
+  				keyboard.OP_MPL, keyboard.OP_MMS, keyboard.OP_MCL, keyboard.OP_MRD, keyboard.OP_CLR,
+  				keyboard.OP_SQR, keyboard.OP_SQT, keyboard.OP_PST, keyboard.OP_BCK, 
+  				keyboard.DIGIT1, keyboard.DIGIT2, keyboard.DIGIT3, keyboard.OP_LBR, keyboard.OP_RBR, 
+  				keyboard.DIGIT4, keyboard.DIGIT5, keyboard.DIGIT6, keyboard.OP_MNS, keyboard.OP_PLS,
+  				keyboard.DIGIT7, keyboard.DIGIT8, keyboard.DIGIT9, keyboard.OP_DIV, keyboard.OP_MUL,
+  				keyboard.OP_PNT, keyboard.DIGIT0, keyboard.OP_INV, keyboard.OP_EQL
   			]);
   		}
   		

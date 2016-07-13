@@ -2,18 +2,20 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: monospace;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
 }
 .calculator {
-    display: inline-block;
+    display: block;
     background-color: black;
     overflow: hidden;
     width: 405px;
-    font-family: monospace;
+    margin: 40px auto;
     color: #555;
+    width: 405px;
     padding: 15px;
     border-radius: 15px;
 }
@@ -24,7 +26,6 @@
     border: 1px solid grey;
     font-size: 35px;
     height: 80px;
-    width: 375px;
     padding: 0 4px;
     text-align: right;
     overflow: hidden;
@@ -53,6 +54,19 @@
     background-color: #ddd;
     box-sizing: border-box;
 }
+
+.type_btn {
+    cursor: pointer;
+    margin: 15px auto;
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    width: 220px;
+    font-size: 24px;
+    text-align: center;
+    background-color: darkgrey;
+}
+
 .keys {
     overflow: hidden;
     float: left;

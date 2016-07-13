@@ -8,8 +8,7 @@
 <body ng-app="calc">
     
     <div ng-controller="calcController">
-        <div class="key" ng-click="setType('simple')">Simple</div>
-        <div class="key" ng-click="setType('advanced')">Advanced</div>
+        <div class="type_btn" ng-click="setType()">{{type}} mode</div>
         <div class="calculator">
             <div class="display" ng-class="{'barby_size': middle_size,'mikro_size': small_size}">{{ result }}</div>
             <div class="keys">

@@ -1,11 +1,17 @@
 var app = angular.module('calc', []);
 app.controller("calcController", function ($scope) {
 	//размеры
-	$scope.type = calc.SIMPLE;
+	$scope.type;
 	$scope.result = '0';
 	
-	$scope.setType = function(type) {
-		$scope.type = type;
+	$scope.setType = function() {
+		if($scope.type == calc.SIMPLE || $scope.type == undefined) {
+			 $scope.type = calc.ADVANCED;
+		}
+		else if($scope.type == calc.ADVANCED) {
+			$scope.type = calc.SIMPLE;
+		}
+		
 		$scope.keys = calc.setType($scope.type);
 	}
 	$scope.keyClicked = function(key){
@@ -21,6 +27,8 @@ app.controller("calcController", function ($scope) {
 	function resToStr(res) {
 		return res + '';
 	}
+	
+	$scope.setType();
 });
 
 /*
