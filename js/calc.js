@@ -285,7 +285,7 @@ var calc = function(){
     },
     //ввод данных
     enterKey: function(digit) {
-      return enterKey(digit);
+      return {result: enterKey(digit), storage: storage};
     }
   }
 }();

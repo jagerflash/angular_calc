@@ -6,16 +6,19 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body ng-app="calc">
+    <div ng-show="keys" class="loading">Загрузка...</div>
     <div ng-controller="calcController" ng-cloak>
         <div class="type_btn" ng-click="setType()">{{type}} mode</div>
         <div class="calculator">
             <div class="display" ng-class="{'barby_size': middle_size,'mikro_size': small_size}">{{ result }}</div>
             <div class="keys">
-                <div class="key" ng-repeat="key in keys" ng-class="{'equa':key.label == '=','double-width': key.label == '=' || (key.label == '←' && type == 'advanced'), 'operation': !!key.operation}" ng-click="keyClicked(key)">{{ key.label }}</div>
+                <div class="key" ng-repeat="key in keys" ng-click="keyClicked(key)" ng-class="{'memoried':storage != 0 && key.label == 'MR','equa':key.label == '=','double-width': key.label == '=' || (key.label == '←' && type == 'advanced'), 'operation': !!key.operation}">
+                    {{ key.label }}
+                </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/calc.js"></script>
 </body>

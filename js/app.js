@@ -3,6 +3,7 @@ app.controller("calcController", function ($scope) {
 	//размеры
 	$scope.type;
 	$scope.result = '0';
+	$scope.storage = 0;
 	
 	$scope.setType = function() {
 		if($scope.type == calc.SIMPLE) {
@@ -15,8 +16,9 @@ app.controller("calcController", function ($scope) {
 		$scope.keys = calc.setType($scope.type);
 	}
 	$scope.keyClicked = function(key){
-		var res = calc.enterKey(key);
-		$scope.result = resToStr(res);
+		var data = calc.enterKey(key);
+		$scope.result = resToStr(data.result);
+		$scope.storage = data.storage;
 		setSize();
 	}
 	

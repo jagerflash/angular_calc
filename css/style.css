@@ -8,6 +8,14 @@
     -webkit-user-select: none;
     user-select: none;
 }
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak { 
+  display: none; 
+}
+.loading {
+    font-size: 27px;
+    text-align: center;
+    margin-top: 180px;
+}
 .calculator {
     display: block;
     background-color: black;
@@ -68,6 +76,12 @@
     width: 75px;
     height:50px;
     background-color: #fff;
+}
+
+.keys .key.memoried {
+    width: 75px;
+    height:50px;
+    background-color: lightgreen;
 }
 
 .keys .key.double-width {
