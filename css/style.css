@@ -20,7 +20,7 @@
     border-radius: 15px;
 }
  
-.display, .display_small {
+.display {
     background-color: #000;
     color: #fff;
     border: 1px solid grey;
@@ -38,14 +38,6 @@
 }
 .display.mikro_size {
     font-size: 15px;
-}
-.display_small {
-    font-size: 16px;
-    line-height: 16px;
-    height: auto;
-    min-height: 21px;
-    border-bottom: none;
-    text-align: left;
 }
 
 .clear {
