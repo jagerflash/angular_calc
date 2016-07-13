@@ -55,7 +55,10 @@ var Model = function(){
 		{label: this.OP_PST, operation: function(a){ return a / 100 }},
 		{label: this.OP_SQT, operation: function(a){ return Math.sqrt(a) }},
 		{label: this.OP_SQR, operation: function(a){ return Math.pow(a, 2) }},
-		{label: this.OP_INV, operation: function(a){ return a * -1 }},
+		{label: this.OP_INV, operation: function(a){ 
+			if(a == '') throw new Error('empty');
+			return (parseFloat(a) * -1)+'' 
+		}},
 		{label: this.OP_MMS, operation: function(a){ 
 			if(storage != undefined){
 				storage -= parseFloat(a) ;
@@ -138,6 +141,10 @@ app.controller("calcController", function ($scope) {
 	$scope.operationClicked = function (key) {
 		if ($scope.clearValue == true) {
 			$scope.clearValue = false;
+			if($scope.display_history == 'Error'){
+				$scope.display_history = '';
+				$scope.valueA = '';
+			}
 		}
 		if(typeof key.operation == 'function') {
 			switch (key.label) {
@@ -161,10 +168,14 @@ app.controller("calcController", function ($scope) {
 					break;
 				
 				default:
-					console.log($scope.valueA);
-					var r = new RegExp($scope.valueA + '$');
-					$scope.valueA = key.operation($scope.valueA);
-					$scope.display_history = (''+$scope.display_history).replace(r, $scope.valueA);
+					try {
+						var r = new RegExp($scope.valueA + '$');
+						$scope.valueA = key.operation($scope.valueA);
+						$scope.display_history = (''+$scope.display_history).replace(r, $scope.valueA);
+					} catch (e) {
+						$scope.display_history = 'Error';
+						$scope.clearValue = true;
+					}
 			}
 			
 		}else if(typeof key.operation == 'string'){
