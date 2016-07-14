@@ -140,9 +140,11 @@ var calc = function(){
     			result += digit+'';
     		}
     		result = clear_first_zero(result);
+    		result = pointTest(result);
         break;
       case 'operand':
         result += key.operation;
+        result = operandTest(result);
 			  expression = '';
 			  reset();
         break;
@@ -228,7 +230,14 @@ var calc = function(){
 			
 		return val;
 	}
-	
+	// проверка на несколько точек
+	function pointTest(result){
+	  return result.replace(/^([^\.]*\.)|\./g, '$1');
+	}
+	// проверка на одинаковые функции
+	function operandTest(result){
+	  return result.replace(/[+]*,[+]*|[+]+/g, '+').replace(/[*]*,[*]*|[*]+/g, '*').replace(/[/]*,[/]*|[/]+/g, '/').replace(/[-]*,[-]*|[-]+/g, '-');
+	}
 	//чистка вывода, переменных
   function clear (result) {
     result = 0;
