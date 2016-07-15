@@ -141,11 +141,10 @@ var calc = function(){
     			result += digit+'';
     		}
     		result = clear_first_zero(result);
-    		result = pointTest(result);
+    		// result = pointTest(result); // не дает ввести несколько чисел с точкой
         break;
       case 'operand':
-        result += key.operation;
-        result = operandTest(result);
+        result = simpleOperator(result, key.operation);
 			  expression = '';
 			  reset();
         break;
@@ -231,13 +230,13 @@ var calc = function(){
 			
 		return val;
 	}
+	// только один оператор после числа
+	function simpleOperator(result, operator) {
+		return (result.search(/([-,+,*,\/])$/) > 0 ? result.slice(0,-1) : result) + operator;
+	}
 	// проверка на несколько точек
 	function pointTest(result){
 	  return result.replace(/^([^\.]*\.)|\./g, '$1');
-	}
-	// проверка на одинаковые функции
-	function operandTest(result){
-	  return result.replace(/[+]*,[+]*|[+]+/g, '+').replace(/[*]*,[*]*|[*]+/g, '*').replace(/[/]*,[/]*|[/]+/g, '/').replace(/[-]*,[-]*|[-]+/g, '-');
 	}
 	//чистка вывода, переменных
   function clear (result) {
