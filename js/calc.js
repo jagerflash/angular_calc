@@ -235,6 +235,7 @@ var calc = function(){
 	}
 	// только один оператор после числа
 	function simpleOperator(result, operator) {
+		result+='';
 		return (result.search(/([-,+,*,\/])$/) > 0 ? result.slice(0,-1) : result) + operator;
 	}
 	// проверка на несколько точек
