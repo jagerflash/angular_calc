@@ -129,7 +129,8 @@ var calc = function(){
       case 'digital':
         var digit = key.value;
         
-        if(expression.toString().length > 17) return;
+        if(expression.toString().length > 15) break;
+        if(result.toString().length > 30) break;
         
   		  if (clearValue == true) {
     			clearValue = false;
