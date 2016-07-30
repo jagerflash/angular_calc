@@ -141,7 +141,9 @@ var calc = function(){
     			result += digit+'';
     		}
     		result = clear_first_zero(result);
-    		// result = pointTest(result); // не дает ввести несколько чисел с точкой
+    		
+    		result = result.replace(new RegExp(expression+'$','ig'), pointTest(expression));
+    		expression = pointTest(expression);
         break;
       case 'operand':
         result = simpleOperator(result, key.operation);
