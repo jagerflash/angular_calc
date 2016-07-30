@@ -221,6 +221,7 @@ var calc = function(){
 	
 	//убирает первым символом ноль
 	function clear_first_zero(val){
+		if(val.length <= 1) return val;// единственный ноль возвращает назад
 		return (val+'').replace( /^0+/, '');
 	}
 	
