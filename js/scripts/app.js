@@ -1,5 +1,5 @@
 var app = angular.module('calc', []);
-app.controller("calcController", function ($scope) {
+app.controller("calcController", ['$scope', function($scope) {
 	//размеры
 	$scope.type;
 	$scope.result = '0';
@@ -31,4 +31,4 @@ app.controller("calcController", function ($scope) {
 	}
 	
 	$scope.setType();
-});
+}]);

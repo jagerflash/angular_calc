@@ -111,7 +111,7 @@ var model = function(){
 	}
 }();
 
-var calc = function(){
+var calc = function (){
   //private
 	var error           = 'Error',
     	calc_type       = 'simple',
