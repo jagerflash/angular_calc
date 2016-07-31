@@ -209,8 +209,8 @@ var calc = function (){
 		while (str.split('(').length < str.split(')').length){
 			str = ('(').concat(str);
 		}
-
-		var r = /\d\(/g;
+		var expr = /\d\(/;
+		var r = new RegExp(expr, 'g');
 
 		str = str.replace(r, function(str){
 		  return str.replace('(','*(');
@@ -233,15 +233,18 @@ var calc = function (){
 			
 		return val;
 	}
+	
 	// только один оператор после числа
 	function simpleOperator(result, operator) {
 		result+='';
 		return (result.search(/([-,+,*,\/])$/) > 0 ? result.slice(0,-1) : result) + operator;
 	}
+	
 	// проверка на несколько точек
 	function pointTest(result){
 	  return result.replace(/^([^\.]*\.)|\./g, '$1');
 	}
+	
 	//чистка вывода, переменных
   function clear (result) {
     result = 0;
@@ -260,6 +263,7 @@ var calc = function (){
 			result = reduce(res);
 			expression = result;
 		}catch (e){
+			console.log(e);
 			result = error; //Malformed expression
 		}
 		clearValue = true;

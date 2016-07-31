@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
     merge = require('merge-stream');
+    watch = require('gulp-watch');
 
 gulp.task('lint', function() {
   return gulp.src('js/*.js')
@@ -38,3 +39,7 @@ gulp.task('make_less', function () {
 });
  
 gulp.task('default', ['make_less' ,'make_js']);
+
+gulp.task('watch', function() {
+  return  gulp.watch('js/scripts/*.js', ['make_js']);
+});
