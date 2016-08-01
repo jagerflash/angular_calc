@@ -16,7 +16,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('make_js', function() {
-  return gulp.src('js/scripts/*js')
+  return gulp.src('js/*js')
     .pipe(uglifly())
     .pipe(concat('script.min.js'))
     .pipe(gulp.dest('js'))
@@ -41,5 +41,5 @@ gulp.task('make_less', function () {
 gulp.task('default', ['make_less' ,'make_js']);
 
 gulp.task('watch', function() {
-  return  gulp.watch('js/scripts/*.js', ['make_js']);
+  return  gulp.watch('js/*.js', ['make_js']);
 });
