@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calc</title>
-    <link rel="stylesheet" href="css/style.min.css" type="text/css" />
-</head>
-<body ng-app="calc">
-    <div ng-show="keys" class="loading">Загрузка...</div>
-    <div ng-controller="calcController" ng-cloak>
-        <div class="type_btn" ng-click="setType()">{{type}} mode</div>
-        <div display-calc></div>
-    </div>
+    <title>Tests</title>
+     
+    <link rel="stylesheet" type="text/css" href="node_modules/jasmine-core/lib/jasmine-core/jasmine.css">
     
+</head>
+<body>
+    <!-- Jasmine References -->
+    <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script type="text/javascript" src="node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script type="text/javascript" src="node_modules/jasmine-core/lib/jasmine-core/boot.js"></script>
     <!--Angular References-->
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-mocks/angular-mocks.js"></script>
+    
     <!--app-->
     <script type="text/javascript" src="js/scripts/app.js"></script>
     <!--directives-->
@@ -23,5 +25,8 @@
     <script type="text/javascript" src="js/scripts/services/service-calc.js"></script>
     <script type="text/javascript" src="js/scripts/services/service-data.js"></script>
     <script type="text/javascript" src="js/scripts/services/service-keys.js"></script>
+    
+    <!--test-->
+    <script type="text/javascript" src="tests/spec.js"></script>
 </body>
 </html>
