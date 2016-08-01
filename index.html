@@ -4,20 +4,54 @@
     <meta charset="UTF-8">
     <title>Calc</title>
     <link rel="stylesheet" href="css/style.min.css" type="text/css" />
+    <link rel="stylesheet" href="less/skin.css" type="text/css" />
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css" type="text/css" />
 </head>
-<body ng-app="calc">
-    <div ng-show="keys" class="loading">Загрузка...</div>
-    <div ng-controller="calcController" ng-cloak>
-        <div class="type_btn" ng-click="setType()">{{type}} mode</div>
-        <div display-calc></div>
+<body ng-app="calc" layout="column" ng-controller="calcController as ul">
+    <div ng-hide="type" class="loading">Загрузка...</div>
+    <md-toolbar layout="row" ng-cloak>
+        <md-button
+            hide-gt-sm
+            class="menu"
+            ng-click="ul.toggleList()">
+              <md-icon md-svg-icon="menu"</md-icon>
+        </md-button>
+        <h3>Angular Calculator</h3>
+    </md-toolbar>
+    <div class="container" layout="row" flex ng-cloak>
+        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4db" md-component-id="left"></a>
+            <md-list>
+                <md-list-item>
+                    <md-button ng-click="ul.turnOnCalc(true)" ng-class="{'selected' : ul.selected === 1}">
+                        <md-icon md-svg-icon="calc"></md-icon> Калькулятор
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button ng-click="ul.turnOnCalc(false)" ng-class="{'selected' : ul.selected === 2}">
+                        <md-icon md-svg-icon="menu"></md-icon> Описание
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+        <md-content id="content" flex>
+            <div ng-show="isCalcDisplay">
+                <div display-calc ng-cloak></div>
+                <div class="type_btn" ng-click="setType()">{{type}} mode</div>
+            </div>
+            <div ng-hide="isCalcDisplay" display-about></div>
+        </md-content>
     </div>
     
     <!--Angular References-->
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="node_modules/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="node_modules/angular-material/angular-material.js"></script>
     <!--app-->
     <script type="text/javascript" src="js/scripts/app.js"></script>
     <!--directives-->
     <script type="text/javascript" src="js/scripts/directives/display-calc.js"></script>
+    <script type="text/javascript" src="js/scripts/directives/display-about.js"></script>
     
     <!--services-->
     <script type="text/javascript" src="js/scripts/services/service-calc.js"></script>
