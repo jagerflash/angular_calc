@@ -1,0 +1,42 @@
+{
+  "name": "angular_calc",
+  "version": "0.1.24",
+  "description": "angular calc",
+  "main": "index.html",
+  "devDependencies": {
+    "angular": "^1.5.8",
+    "angular-mocks": "^1.5.8",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglyfly": "^1.4.2",
+    "gulp-watch": "^4.3.9",
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
+    "jshint": "^2.9.2",
+    "merge-stream": "^1.0.0",
+    "normalize.css": "^4.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jagerflash/angular_calc.git"
+  },
+  "keywords": [
+    "angular",
+    "calculator",
+    "javascript"
+  ],
+  "author": "jagerflash",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jagerflash/angular_calc/issues"
+  },
+  "homepage": "https://github.com/jagerflash/angular_calc#readme"
+}

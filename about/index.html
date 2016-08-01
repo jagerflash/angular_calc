@@ -5,21 +5,50 @@
     <title>Про калькулятор</title>
 </head>
 <body>
+    Версия: v0.3.4
     <ul>
-        <li>современный дизайн</li>
+        <li>Современный дизайн</li>
         <li>2 режима: простой, расширенный</li>
-        <li>вывод результата с адаптацией под размер окна
+        <li>Процесс компиляции angular скрывается</li>
+        <li>Вывод результата с адаптацией под размер окна
             <ul>
                 <li>форматирование с экспаненципальной приставкой</li>
                 <li>подбор размера шрифта под размер окна</li>
             </ul>
         </li>
-        <li>Используемые технологии:
+        <li>Используются технологии:
             <ul>
                 <li>Javascript</li>
-                <li>Angular</li>
+                <li>Angular
+                    <ul>
+                        <li>Директивы: ng-repeat, ng-click, ng-class, ng-cloak, ng-show, самописная директива: display-calc</li>
+                        <li>Самописные сервисы</li>
+                        <li>Контроллер</li>
+                    </ul>
+                </li>
+                <li>Less</li>
                 <li>CSS</li>
                 <li>Html</li>
+                <li>Nodejs</li>
+                <li>npm modules
+                    <ul>
+                        <li>Gulp<span>сборщик</span></li>
+                        <li>gulp-rename<span>переименовывает файлы</span></li>
+                        <li>gulp-concat-css<span>объединяет файлы стилей</span></li>
+                        <li>gulp-clean-css<span>минифицирует файлы стилей</span></li>
+                        <li>gulp-concat<span>объединяет скрипты</span></li>
+                        <li>gulp-uglifly<span>минифицирует скрипты</span></li>
+                        <li>gulp-merge-stream<span>создает поток действий</span></li>
+                        <li>gulp-jshint<span>управляет проеверкой</span></li>
+                        <li>gulp-watch<span>следит за изменениями фалов для запуска тасков</span></li>
+                        <li>normalize.css<span>подключает файл стилей для кроссбраузабельности</span></li>
+                        <li>jshint<span>проверяет ошибки в скриптах</span></li>
+                        <li>jasmine<span>выполняет тесты</span></li>
+                        <li>angular-mocks<span>эмуляция запросов</span></li>
+                        <li>Bower<span>Пакетный менеджер</span></li>
+                        <li>bower-installer <span>инсталлер боуэра</span></li>
+                    </ul>
+                </li>
             </ul>
         </li>
         <li>Исправляет ввод:
@@ -34,10 +63,11 @@
         <li>Обрабатывает ошибки:
             <ul>
                 <li>деления на ноль</li>
+                <li>ошибочно введенных знаков</li>
             </ul>
         </li>
-        <li>Возможность расширения кода (разделение логики калькулятора от представления)</li>
-        <li>Код читабелен</li>
+        <li>Код читабелен, доступен для расширения</li>
+        <li>Присутствуют модульные тесты</li>
     </ul>
 </body>
 </html>
