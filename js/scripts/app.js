@@ -4,7 +4,7 @@ app.controller('calcController', ['$scope', '$mdSidenav',function($scope, $mdSid
 	var _this = this;
 	$scope.result = 0;
 	$scope.storage = 0;
-	$scope.type = 'simple';
+	$scope.type = 'advanced';
 	$scope.isCalcDisplay = true;
 	_this.selected = 1;
 	
