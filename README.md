@@ -19,8 +19,9 @@
     $ gulp
     </pre>
 </div>
-
+<h2>Тестирование</h2>
+<p><a href="test.html">test.html</a></p>
 <h2>Про калькулятор</h2>
-<p><a href="about/">Калькулятор Angular</a></p>
+<p><a href="about/index.html">Про Калькулятор Angular</a></p>
 <h2>Лицензия</h2>
 <p>Licensed under the MIT License</p>

@@ -24,17 +24,15 @@ md-list-item > button {
   width: 100%;
   text-align: left !important;
 }
-md-list .md-button.selected {
-  color: #03a9f4;
-}
 md-sidenav md-list {
   padding: 0px 0px 8px 0px;
+}
+md-sidenav md-list .md-button.selected {
+  color: #03a9f4;
 }
 /* Primary content area */
 #content {
   overflow: hidden;
-}
-#content {
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 5px;
@@ -57,16 +55,16 @@ md-sidenav md-list {
   width: 36px;
   height: 36px;
 }
-md-button.menuBtn > md-icon {
-  fill: white;
-  width: 24px;
-  height: 24px;
-}
 #content .md-button.share:active > md-icon {
   background-color: #dadada;
   border-radius: 75%;
   padding: 4px;
   transition: all 100ms ease-out 30ms;
+}
+md-button.menuBtn > md-icon {
+  fill: white;
+  width: 24px;
+  height: 24px;
 }
 #content img {
   display: block;

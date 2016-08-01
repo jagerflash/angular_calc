@@ -30,59 +30,60 @@ md-list-item > button {
   text-align:left !important;
 }
 
-md-list .md-button.selected {
-  color: #03a9f4;
-}
-
-md-sidenav  md-list {
-  padding: 0px 0px 8px 0px;
+md-sidenav { 
+  md-list {
+    padding: 0px 0px 8px 0px;
+    
+    .md-button.selected {
+      color: #03a9f4;
+    }
+  }
 }
 
 
 /* Primary content area */
 
-#content {
-  overflow: hidden;
-}
-
 #content  {
+  overflow: hidden;
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 5px;
-}
-
-#content .md-button.share {
-  background-color: transparent;
-  border: none;
-  width: 48px;
-  height: 48px;
-  margin: 8px auto 16px 0;
-  position: absolute;
-  top: 10px;
-  right: 25px;
-}
-
-#content md-icon.avatar {
-  margin-top: 10px;
-}
-
-#content .md-button.share > md-icon {
-  fill:black;
-  width:36px;
-  height:36px;
+  
+  .md-button.share {
+    background-color: transparent;
+    border: none;
+    width: 48px;
+    height: 48px;
+    margin: 8px auto 16px 0;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+  }
+  
+  md-icon.avatar {
+    margin-top: 10px;
+  }
+  
+  .md-button.share {
+    & > md-icon {
+      fill:black;
+      width:36px;
+      height:36px;
+    }
+    
+    &:active > md-icon {
+      background-color: #dadada;
+      border-radius: 75%;
+      padding:4px;
+      transition: all 100ms ease-out 30ms;
+    }
+  }
 }
 
 md-button.menuBtn > md-icon {
   fill:white;
   width:24px;
   height:24px;
-}
-
-#content .md-button.share:active > md-icon {
-  background-color: #dadada;
-  border-radius: 75%;
-  padding:4px;
-  transition: all 100ms ease-out 30ms;
 }
 
 #content img {
