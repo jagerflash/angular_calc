@@ -9,16 +9,19 @@
     <div ng-show="keys" class="loading">Загрузка...</div>
     <div ng-controller="calcController" ng-cloak>
         <div class="type_btn" ng-click="setType()">{{type}} mode</div>
-        <div class="calculator">
-            <div class="display" ng-class="{'barby_size': middle_size,'mikro_size': small_size}">{{ result }}</div>
-            <div class="keys">
-                <div class="key" ng-repeat="key in keys" ng-click="keyClicked(key)" ng-class="{'memoried':storage != 0 && key.label == 'MR','equa':key.label == '=','double-width': key.label == '=' || (key.label == '←' && type == 'advanced'), 'operation': !!key.operation}">
-                    {{ key.label }}
-                </div>
-            </div>
-        </div>
+        <div display-calc></div>
     </div>
-    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-    <script type="text/javascript" src="js/script.min.js"></script>
+    
+    <!--libs-->
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <!--app-->
+    <script type="text/javascript" src="js/scripts/app.js"></script>
+    <!--directives-->
+    <script type="text/javascript" src="js/scripts/directives/display-calc.js"></script>
+    
+    <!--services-->
+    <script type="text/javascript" src="js/scripts/services/service-calc.js"></script>
+    <script type="text/javascript" src="js/scripts/services/service-data.js"></script>
+    <script type="text/javascript" src="js/scripts/services/service-keys.js"></script>
 </body>
 </html>
